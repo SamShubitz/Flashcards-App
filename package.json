@@ -1,5 +1,5 @@
 {
-  "name": "cards-app",
+  "name": "trivia-game",
   "version": "0.1.0",
   "private": true,
   "scripts": {

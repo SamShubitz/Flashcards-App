@@ -1,12 +1,10 @@
-import { Question, CardDisplay } from "./Types";
+import { Question } from "./Trivia";
 import { useState } from "react";
 
 const Card = ({
   question,
   score,
   setScore,
-  disabled,
-  setDisabled,
 }: {
   question: Question;
   score: number;
@@ -14,7 +12,7 @@ const Card = ({
   disabled: boolean;
   setDisabled: (val: boolean) => void;
 }) => {
-  const [display, setDisplay] = useState<CardDisplay>("front");
+  const [display, setDisplay] = useState("front");
   const [status, setStatus] = useState("");
   const message =
     status === "correct"
@@ -31,11 +29,9 @@ const Card = ({
       setStatus("correct");
       const nextScore = score + 1;
       setScore(nextScore);
-      setDisabled(true);
     } else {
       setStatus("incorrect");
       setScore(0);
-      setDisabled(true);
     }
     toggleCardDisplay();
   };
@@ -63,7 +59,7 @@ const Card = ({
           </>
         ) : (
           <>
-            <div className="w-full flex-1 flex flex-col gap-16 justify-center items-center text-center cursor-pointer">
+            <div className="w-full flex-1 flex flex-col gap-16 justify-center items-center text-center">
               <p className={`font-bold text-2xl ${message.style}`}>
                 {message.text}
               </p>

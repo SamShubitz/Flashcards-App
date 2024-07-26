@@ -1,8 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import { Question } from "./Types";
 import revalidate from "@/app/actions";
+
+export type Question = {
+  id: string;
+  question: { text: string };
+  incorrectAnswers: string[];
+  correctAnswer: string;
+  shuffledAnswers?: string[];
+};
 
 const Trivia = ({ questions }: { questions: Question[] }) => {
   const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
