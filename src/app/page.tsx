@@ -7,6 +7,7 @@ export default function Home() {
       <div className="flex-1 max-w-96 h-96 relative">
         <Image
           fill={true}
+          sizes=""
           className="object-contain"
           src={background}
           alt="image"

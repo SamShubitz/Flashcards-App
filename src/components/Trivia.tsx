@@ -1,17 +1,19 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 import { Question } from "./Types";
 import revalidate from "@/app/actions";
 
-const TriviaCard = ({ questions }: { questions: Question[] }) => {
+const Trivia = ({ questions }: { questions: Question[] }) => {
   const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
+  const [score, setScore] = useState(0);
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     const shuffled = questions.map((q) => {
-      const nextAs = shuffleAnswers(q);
-      const nextQ = { ...q, shuffledAnswers: nextAs };
-      return nextQ;
+      const answers = shuffleAnswers(q);
+      const question = { ...q, shuffledAnswers: answers };
+      return question;
     });
     setShuffledQuestions(shuffled);
   }, [questions]);
@@ -35,19 +37,31 @@ const TriviaCard = ({ questions }: { questions: Question[] }) => {
   };
 
   const deck = shuffledQuestions.map((question) => {
-    return <Card key={question.id} question={question} />;
+    return (
+      <Card
+        key={question.id}
+        score={score}
+        setScore={setScore}
+        question={question}
+        disabled={disabled}
+        setDisabled={setDisabled}
+      />
+    );
   });
 
   const currentCard = deck[0];
 
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <div>{currentCard}</div>
-      </Suspense>
-      <button onClick={handleClick}>Next question</button>
+    <div className="flex flex-col items-center">
+      <div>{currentCard}</div>
+      <button
+        className="p-4 mt-8 rounded-md text-white text-sm w-40 bg-gray-800"
+        onClick={handleClick}
+      >
+        Next question
+      </button>
     </div>
   );
 };
 
-export default TriviaCard;
+export default Trivia;

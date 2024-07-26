@@ -1,15 +1,15 @@
-"use server";
-
-import TriviaCard from "@/components/TriviaCard";
+import Trivia from "@/components/Trivia";
 import { getQuestions } from "../data/TriviaData";
-import { revalidateTag } from "next/cache";
+import { Suspense } from "react";
 
 const TriviaPage = async () => {
   const questions = await getQuestions();
 
   return (
     <div className="mx-auto flex items-center justify-center">
-      <TriviaCard questions={questions} />
+      {/* <Suspense fallback={<Loading/>}> */}
+      <Trivia questions={questions} />
+      {/* </Suspense> */}
     </div>
   );
 };
