@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
-import Card from "./Card";
-import revalidate from "@/app/actions";
+import TriviaDisplay from "./TriviaDisplay";
+import revalidate from "@/app/trivia/actions";
+import Button from "./Button";
 
 export type Question = {
   id: string;
@@ -14,7 +15,6 @@ export type Question = {
 const Trivia = ({ questions }: { questions: Question[] }) => {
   const [shuffledQuestions, setShuffledQuestions] = useState<Question[]>([]);
   const [score, setScore] = useState(0);
-  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     const shuffled = questions.map((q) => {
@@ -45,13 +45,11 @@ const Trivia = ({ questions }: { questions: Question[] }) => {
 
   const deck = shuffledQuestions.map((question) => {
     return (
-      <Card
+      <TriviaDisplay
         key={question.id}
         score={score}
         setScore={setScore}
         question={question}
-        disabled={disabled}
-        setDisabled={setDisabled}
       />
     );
   });
@@ -61,12 +59,9 @@ const Trivia = ({ questions }: { questions: Question[] }) => {
   return (
     <div className="flex flex-col items-center">
       <div>{currentCard}</div>
-      <button
-        className="p-4 mt-8 rounded-md text-white text-sm w-40 bg-gray-800"
-        onClick={handleClick}
-      >
+      <Button className="mt-8" onClick={handleClick}>
         Next question
-      </button>
+      </Button>
     </div>
   );
 };

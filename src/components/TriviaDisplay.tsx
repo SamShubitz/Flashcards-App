@@ -1,7 +1,7 @@
-import { Question } from "./Trivia";
+import { Question } from "./TriviaGame";
 import { useState } from "react";
 
-const Card = ({
+const TriviaDisplay = ({
   question,
   score,
   setScore,
@@ -9,8 +9,6 @@ const Card = ({
   question: Question;
   score: number;
   setScore: (score: number) => void;
-  disabled: boolean;
-  setDisabled: (val: boolean) => void;
 }) => {
   const [display, setDisplay] = useState("front");
   const [status, setStatus] = useState("");
@@ -43,7 +41,9 @@ const Card = ({
         {display === "front" ? (
           <>
             <div className="flex-1 flex border-[1px] bg-white text-black rounded-t-md mb-4 w-full items-center justify-center">
-              <h1 className="mt-1 p-3 pb-4">{question.question.text}</h1>
+              <h1 className="mt-1 p-3 pb-4 text-center">
+                {question.question.text}
+              </h1>
             </div>
             <div className="flex-1 h-fit grid grid-cols-2 grid-rows-2 gap-4">
               {question.shuffledAnswers?.map((a, i) => (
@@ -73,4 +73,4 @@ const Card = ({
   );
 };
 
-export default Card;
+export default TriviaDisplay;

@@ -2,9 +2,9 @@ import Link from "next/link";
 
 const links = [
   { id: 1, title: "Home", url: "/" },
-  { id: 2, title: "Trivia", url: "/trivia" },
-  { id: 3, title: "Contact", url: "/contact" },
-  { id: 4, title: "Dashboard", url: "/dashboard" },
+  { id: 2, title: "Flashcards", url: "/flashcards" },
+  { id: 3, title: "Trivia", url: "/trivia" },
+  { id: 4, title: "Login", url: "/login" },
 ];
 
 const Header = () => {

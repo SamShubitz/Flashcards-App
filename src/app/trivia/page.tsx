@@ -1,15 +1,12 @@
-import Trivia from "@/components/Trivia";
-import { getQuestions } from "../data/TriviaData";
-import { Suspense } from "react";
+import TriviaGame from "@/components/TriviaGame";
+import { getQuestions } from "@/db/TriviaData";
 
 const TriviaPage = async () => {
   const questions = await getQuestions();
 
   return (
-    <div className="mx-auto flex items-center justify-center">
-      {/* <Suspense fallback={<Loading/>}> */}
-      <Trivia questions={questions} />
-      {/* </Suspense> */}
+    <div className="flex items-center justify-center">
+      <TriviaGame questions={questions} />
     </div>
   );
 };

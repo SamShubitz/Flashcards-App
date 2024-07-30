@@ -8,16 +8,17 @@ export default function Home() {
         <Image
           fill={true}
           sizes=""
-          className="object-contain"
+          className="object-contain rounded-full"
           src={background}
           alt="image"
         />
       </div>
       <div className="flex-1 max-w-96 text-left">
-        <h1 className="text-4xl">Welcome Text</h1>
+        <h1 className="text-4xl">Welcome</h1>
         <br />
         <p>
           Suporting welcome additional app text.
+          <br />
           <br />
           Yes very good points made in that above text. And to follow it up we
           have this additional text ehre. What na awkward pdalce to end the
