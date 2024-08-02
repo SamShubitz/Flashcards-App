@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
+import { Card } from "./FlashcardForm";
 
-export type Flashcard = { front: string; back: string };
-
-const FlashCard = ({ content }: { content: Flashcard }) => {
+const FlashCard = ({ content }: { content: Card }) => {
   const [frontDisplay, setFrontDisplay] = useState(true);
 
   const toggleDisplay = () => {

@@ -1,12 +1,13 @@
 import Button from "./Button";
-import { Flashcard } from "./Flashcard";
+
+export type Card = { front: string; back: string };
 
 const CustomForm = ({
   nextCard,
   handleFormChange,
   handleSubmit,
 }: {
-  nextCard: Flashcard;
+  nextCard: Card;
   handleFormChange: (e: any) => void;
   handleSubmit: (e: any) => void;
 }) => {
@@ -16,6 +17,7 @@ const CustomForm = ({
       <input
         id="question-input"
         name="front"
+        minLength={1}
         className="pl-2"
         type="text"
         placeholder="question"
@@ -27,6 +29,7 @@ const CustomForm = ({
       <input
         id="answer-input"
         name="back"
+        minLength={1}
         className="pl-2"
         type="text"
         placeholder="answer"

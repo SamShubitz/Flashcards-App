@@ -1,7 +1,10 @@
 import Image from "next/image";
 import background from "../../public/background.jpg";
+import { getUser } from "@/lib/get-user";
 
-export default function Home() {
+export default async function Home() {
+  const user = await getUser();
+
   return (
     <main className="flex justify-center items-center p-24 gap-9">
       <div className="flex-1 max-w-96 h-96 relative">

@@ -1,5 +1,5 @@
 import TriviaGame from "@/components/TriviaGame";
-import { getQuestions } from "@/db/TriviaData";
+import { getQuestions } from "@/lib/get-trivia";
 
 const TriviaPage = async () => {
   const questions = await getQuestions();

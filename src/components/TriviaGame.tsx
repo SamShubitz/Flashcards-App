@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import TriviaDisplay from "./TriviaDisplay";
-import revalidate from "@/app/trivia/actions";
+import { revalidateByTag } from "@/lib/revalidate";
 import Button from "./Button";
 
 export type Question = {
@@ -28,7 +28,7 @@ const Trivia = ({ questions }: { questions: Question[] }) => {
   const handleClick = () => {
     const nextList = shuffledQuestions.slice(1, shuffledQuestions.length);
     if (nextList.length === 0) {
-      revalidate();
+      revalidateByTag("questions");
     }
     setShuffledQuestions(nextList);
   };

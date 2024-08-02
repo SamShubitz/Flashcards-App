@@ -21,8 +21,6 @@ async function seed() {
       userId: user.id,
     },
   });
-
-  console.log("User and deck inserted successfully");
 }
 
 seed()
