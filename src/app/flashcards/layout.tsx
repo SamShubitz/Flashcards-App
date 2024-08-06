@@ -1,6 +1,5 @@
 import DeckList from "@/components/DeckList";
 import { getDecks } from "@/lib/get-decks";
-// import { unstable_cache } from "next/cache";
 
 export default async function RootLayout({
   children,

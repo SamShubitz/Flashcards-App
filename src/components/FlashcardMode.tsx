@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import FlashcardForm, { Card } from "./FlashcardForm";
 import FlashCard from "./Flashcard";
 import Button from "./Button";
-import { saveDeck } from "@/app/flashcards/actions";
+import { saveDeck, updateDeck } from "@/app/flashcards/actions";
+import { getDeckById } from "@/app/flashcards/[id]/page";
 import { revalidateByPath } from "@/lib/revalidate";
 
 type Deck = {
   name: string;
-  id?: string;
+  id: string;
   userId?: string;
   cards: Card[];
 };
@@ -44,7 +45,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
     setNextCard({ ...nextCard, [name]: value });
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (deck.cards[0].front === "") {
       setDeck({ ...deck, cards: [nextCard] });
@@ -53,12 +54,17 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
       setDisplayIndex(deck.cards.length);
     }
     setNextCard({ front: "", back: "" });
+
+    if (savedDeck) {
+      const newDeck = { ...savedDeck, cards: [...deck.cards, nextCard] };
+      const { id } = await updateDeck(newDeck);
+      revalidateByPath(`/flashcards/${id}`);
+    }
   };
 
   const handleSave = async () => {
     const deckData = { cards: deck.cards, name: deck.name };
     await saveDeck(deckData);
-    revalidateByPath("/flashcards");
   };
 
   return (

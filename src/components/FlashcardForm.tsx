@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-export type Card = { front: string; back: string };
+export type Card = { id?: string; front: string; back: string };
 
 const CustomForm = ({
   nextCard,
