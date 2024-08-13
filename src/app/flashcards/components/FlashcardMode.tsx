@@ -53,6 +53,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
         return card !== currentCard;
       });
       setDeck({ ...deck, cards: filteredCards });
+      setDisplayIndex((index) => (index === 0 ? 0 : index - 1));
     }
   };
 
