@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import TriviaDisplay from "./TriviaDisplay";
 import { revalidateByTag } from "@/lib/revalidate";
-import Button from "./Button";
+import { Button } from "@/components/ui/button";
 
 export type Question = {
   id: string;

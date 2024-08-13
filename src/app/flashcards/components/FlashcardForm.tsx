@@ -1,4 +1,5 @@
-import Button from "./Button";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export type Card = { id?: string; front: string; back: string };
 
@@ -12,9 +13,9 @@ const CustomForm = ({
   handleSubmit: (e: any) => void;
 }) => {
   return (
-    <form onSubmit={handleSubmit} className="flex gap-4">
+    <form onSubmit={handleSubmit} className="flex gap-4 mb-2">
       <label htmlFor="question-input" />
-      <input
+      <Input
         id="question-input"
         name="front"
         minLength={1}
@@ -26,7 +27,7 @@ const CustomForm = ({
         required
       />
       <label htmlFor="answer-input" />
-      <input
+      <Input
         id="answer-input"
         name="back"
         minLength={1}
@@ -37,7 +38,6 @@ const CustomForm = ({
         onChange={handleFormChange}
         required
       />
-
       <Button type="submit" className="px-2 py-2 text-xs ml-2">
         Add card
       </Button>

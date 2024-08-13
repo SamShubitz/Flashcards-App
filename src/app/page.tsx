@@ -1,5 +1,3 @@
-import Image from "next/image";
-import background from "../../public/background.jpg";
 import { getUser } from "@/lib/get-user";
 
 export default async function Home() {
@@ -7,15 +5,7 @@ export default async function Home() {
 
   return (
     <main className="flex justify-center items-center p-24 gap-9">
-      <div className="flex-1 max-w-96 h-96 relative">
-        <Image
-          fill={true}
-          sizes=""
-          className="object-contain rounded-full"
-          src={background}
-          alt="image"
-        />
-      </div>
+      <div className="" />
       <div className="flex-1 max-w-96 text-left">
         <h1 className="text-4xl">Welcome</h1>
         <br />
@@ -23,9 +13,7 @@ export default async function Home() {
           Suporting welcome additional app text.
           <br />
           <br />
-          Yes very good points made in that above text. And to follow it up we
-          have this additional text ehre. What na awkward pdalce to end the
-          text. It needs more for length purposes.
+          {`This is a 'toy app' that allows users to save and customize flashcards decks, or play a simple trivia game.`}
         </p>
       </div>
     </main>

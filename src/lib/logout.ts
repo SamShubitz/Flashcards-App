@@ -2,11 +2,11 @@
 import { cookies } from "next/headers";
 import { lucia } from "@/lib/auth";
 import { getUser } from "@/lib/get-user";
+import { redirect } from "next/navigation";
 
 export async function logout() {
   const response = await getUser();
   const session = response?.session;
-
   session && (await lucia.invalidateSession(session.id));
 
   const sessionCookie = lucia.createBlankSessionCookie();
@@ -15,4 +15,5 @@ export async function logout() {
     sessionCookie.value,
     sessionCookie.attributes
   );
+  redirect(`/`);
 }

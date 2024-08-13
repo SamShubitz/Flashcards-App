@@ -2,7 +2,6 @@
 import db from "@/lib/db";
 import { getUser } from "@/lib/get-user";
 import { revalidateByPath } from "@/lib/revalidate";
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 type DeckData = {
@@ -36,7 +35,7 @@ export async function updateDeck(deck: DeckData) {
       name: deck.name,
       cards: {
         upsert: deck.cards.map((card) => ({
-          where: { id: card.id ?? "" }, // Use an empty string or a default value if id is undefined
+          where: { id: card.id ?? "" },
           update: {
             front: card.front,
             back: card.back,
@@ -51,4 +50,13 @@ export async function updateDeck(deck: DeckData) {
     include: { cards: true },
   });
   return updatedDeck;
+}
+
+export async function deleteDeck(id: string) {
+  await db.deck.delete({
+    where: {
+      id: id as string,
+    },
+  });
+  redirect("/flashcards");
 }

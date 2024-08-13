@@ -1,4 +1,4 @@
-import TriviaGame from "@/components/TriviaGame";
+import TriviaGame from "./components/TriviaGame";
 import { getQuestions } from "@/lib/get-trivia";
 
 const TriviaPage = async () => {

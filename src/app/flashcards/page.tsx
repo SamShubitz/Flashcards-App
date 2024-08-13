@@ -1,7 +1,11 @@
-import FlashcardMode from "@/components/FlashcardMode";
+import FlashcardMode from "@/app/flashcards/components/FlashcardMode";
 
 const Flashcards = async () => {
-  return <FlashcardMode />;
+  return (
+    <div className="flex items-center justify-between border-2 rounded-lg p-[5rem]">
+      <FlashcardMode />
+    </div>
+  );
 };
 
 export default Flashcards;

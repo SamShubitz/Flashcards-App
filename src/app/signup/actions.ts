@@ -7,7 +7,8 @@ import { redirect } from "next/navigation";
 import { generateIdFromEntropySize } from "lucia";
 
 export async function signup(formData: FormData) {
-  const username = formData.get("username");
+  const usernameInput = formData.get("username");
+  const username = usernameInput?.toString().toLowerCase();
   // username must be between 4 ~ 31 characters, and only consists of lowercase letters, 0-9, -, and _
   // keep in mind some database (e.g. mysql) are case insensitive
   if (

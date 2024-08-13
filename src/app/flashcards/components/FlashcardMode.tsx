@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
-import FlashcardForm, { Card } from "./FlashcardForm";
+import FlashcardForm, { Card } from "@/app/flashcards/components/FlashcardForm";
 import FlashCard from "./Flashcard";
-import Button from "./Button";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { saveDeck, updateDeck } from "@/app/flashcards/actions";
-import { getDeckById } from "@/app/flashcards/[id]/page";
 import { revalidateByPath } from "@/lib/revalidate";
 
 type Deck = {
@@ -45,6 +45,17 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
     setNextCard({ ...nextCard, [name]: value });
   };
 
+  const handleRemoveCard = () => {
+    if (deck.cards.length === 1) {
+      setDeck({ ...deck, cards: [{ front: "", back: "" }] });
+    } else {
+      const filteredCards = deck.cards.filter((card) => {
+        return card !== currentCard;
+      });
+      setDeck({ ...deck, cards: filteredCards });
+    }
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (deck.cards[0].front === "") {
@@ -63,23 +74,25 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
   };
 
   const handleSave = async () => {
-    const deckData = { cards: deck.cards, name: deck.name };
-    await saveDeck(deckData);
+    if (deck.cards[0].front !== "") {
+      const deckData = { cards: deck.cards, name: deck.name };
+      await saveDeck(deckData);
+    }
   };
 
   return (
-    <div className="flex flex-col h-[550px] items-center justify-between">
+    <div className="flex flex-col items-center gap-3">
       {savedDeck ? (
-        <h1 className="text-4xl text-gray-600">{deck.name}</h1>
+        <h1 className="text-4xl text-slate-500 mb-4">{deck.name}</h1>
       ) : (
-        <div className="flex gap-4">
-          <input
+        <div className="flex gap-4 mb-6">
+          <Input
             type="text"
             className="text-3xl text-center"
             placeholder="New Deck"
             onChange={(e) => setDeck({ ...deck, name: e.target.value })}
           />
-          <Button onClick={handleSave} className="p-2">
+          <Button className="text-xs" onClick={handleSave}>
             Save deck
           </Button>
         </div>
@@ -89,19 +102,24 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
         handleFormChange={handleFormChange}
         handleSubmit={handleSubmit}
       />
+      {!savedDeck && (
+        <Button className="text-xs" onClick={handleRemoveCard}>
+          Remove card
+        </Button>
+      )}
       <FlashCard content={currentCard} />
-      <div className="font-light border p-2 min-w-[4rem] text-center rounded-lg">
+      <div className="font-light border p-2 min-w-[4rem] text-center text-sm font-mono rounded-lg">
         {deck.cards[0].front
           ? `${displayIndex + 1} / ${deck.cards.length}`
           : "0 / 0"}
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-2 mt-2">
         <Button
-          className="py-2"
+          className="text-xs"
           onClick={() => handleCardChange("d")}
         >{`<`}</Button>
         <Button
-          className="py-2"
+          className=""
           onClick={() => handleCardChange("i")}
         >{`>`}</Button>
       </div>
