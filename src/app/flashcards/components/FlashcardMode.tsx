@@ -2,14 +2,14 @@
 import { useEffect, useState } from "react";
 import FlashcardForm, { Card } from "@/app/flashcards/components/FlashcardForm";
 import FlashCard from "./Flashcard";
+import SaveDialog from "./SaveDialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { saveDeck, updateDeck } from "@/app/flashcards/actions";
 import { revalidateByPath } from "@/lib/revalidate";
 
-type Deck = {
+export type Deck = {
   name: string;
-  id: string;
+  id?: string;
   userId?: string;
   cards: Card[];
 };
@@ -81,33 +81,36 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
     }
   };
 
-  return (
-    <div className="flex flex-col items-center gap-3">
-      {savedDeck ? (
-        <h1 className="text-4xl text-slate-500 mb-4">{deck.name}</h1>
-      ) : (
-        <div className="flex gap-4 mb-6">
-          <Input
-            type="text"
-            className="text-3xl text-center"
-            placeholder="New Deck"
-            onChange={(e) => setDeck({ ...deck, name: e.target.value })}
-          />
-          <Button className="text-xs" onClick={handleSave}>
-            Save deck
-          </Button>
-        </div>
-      )}
+  const newDeckDisplay = (
+    <>
+      <div className="flex gap-4 self-end mb-6">
+        <SaveDialog setDeck={setDeck} onSave={handleSave} deck={deck} />
+        <Button className="text-xs p-2" onClick={handleRemoveCard}>
+          Remove card
+        </Button>
+      </div>
       <FlashcardForm
         nextCard={nextCard}
         handleFormChange={handleFormChange}
         handleSubmit={handleSubmit}
       />
-      {!savedDeck && (
-        <Button className="text-xs" onClick={handleRemoveCard}>
-          Remove card
-        </Button>
-      )}
+    </>
+  );
+
+  const deckDisplay = (
+    <>
+      <FlashcardForm
+        nextCard={nextCard}
+        handleFormChange={handleFormChange}
+        handleSubmit={handleSubmit}
+      />
+      <h1 className="text-4xl text-slate-500 mb-4">{deck.name}</h1>
+    </>
+  );
+
+  return (
+    <div className="flex flex-col items-center gap-3">
+      {savedDeck ? deckDisplay : newDeckDisplay}
       <FlashCard content={currentCard} />
       <div className="font-light border p-2 min-w-[4rem] text-center text-sm font-mono rounded-lg">
         {deck.cards[0].front

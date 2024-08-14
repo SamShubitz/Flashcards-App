@@ -23,13 +23,13 @@ const DeckDisplay = async ({ params }: { params: Params }) => {
   const deck = await getDeckById(id);
 
   return (
-    <div className="flex flex-col gap-5 items-center justify-between border-2 rounded-lg p-[5rem]">
-      <FlashcardMode savedDeck={deck} />
+    <div className="flex flex-col gap-5 bg-gray-100 items-center justify-between border-2 rounded-lg p-[5rem]">
       <form action={deleteDeck.bind(null, id)} className="self-end">
-        <Button className="text-xs" type="submit">
+        <Button className="text-xs self-end bg-gray-500" type="submit">
           Delete deck
         </Button>
       </form>
+      <FlashcardMode savedDeck={deck} />
     </div>
   );
 };
