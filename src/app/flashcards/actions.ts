@@ -1,7 +1,6 @@
 "use server";
 import db from "@/lib/db";
 import { getUser } from "@/lib/get-user";
-import { revalidateByPath } from "@/lib/revalidate";
 import { redirect } from "next/navigation";
 
 type DeckData = {

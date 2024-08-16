@@ -8,10 +8,10 @@ export default async function RootLayout({
 }>) {
   const decks = await getDecks();
   return (
-    <div className="flex-1  h-screen flex justify-evenly items-center">
+    <div className="border-[1px] flex-1 h-screen flex justify-center gap-10 items-center">
       <DeckList decks={decks} />
       {children}
-      <span />
+      <span className="w-[12rem]" />
     </div>
   );
 }

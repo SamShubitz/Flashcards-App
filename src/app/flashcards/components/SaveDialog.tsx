@@ -21,24 +21,40 @@ const SaveDialogue = ({
   setDeck: (e: any) => void;
   deck: Deck;
 }) => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState({
+    text: "Please enter a name",
+    error: false,
+  });
+  const errorStatus = message.error ? "visible" : "invisible";
 
   const handleChange = (e: any) => {
     const name = e.target.value;
     setDeck({ ...deck, name: name });
+    setMessage({ ...message, error: false });
   };
 
-  const handleOnSave = () => {
+  const handleOnSave = async () => {
     if (deck.name === "") {
-      setMessage("Please enter a name");
-    } else {
-      onSave();
+      setMessage({ text: "Please enter a name", error: true });
+      return;
     }
+    if (deck.cards[0].front === "") {
+      setMessage({ text: "Deck is currently empty", error: true });
+      return;
+    }
+    if (deck.name.length >= 21) {
+      setMessage({
+        text: "Deck name must be 20 characters or less",
+        error: true,
+      });
+      return;
+    }
+    onSave();
   };
 
   return (
     <Dialog>
-      <DialogTrigger className="bg-slate-900 p-2 rounded-md text-xs text-white">
+      <DialogTrigger className="text-xs rounded-md px-3 border font-medium border-input bg-background hover:bg-accent hover:text-accent-foreground">
         Save deck
       </DialogTrigger>
       <DialogContent>
@@ -50,6 +66,9 @@ const SaveDialogue = ({
               value={deck.name}
               onChange={handleChange}
             />
+            <p className={`text-xs text-destructive mt-4 ${errorStatus}`}>
+              {message.text}
+            </p>
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

@@ -26,7 +26,7 @@ const Trivia = ({ questions }: { questions: Question[] }) => {
   }, [questions]);
 
   const handleClick = () => {
-    const nextList = shuffledQuestions.slice(1, shuffledQuestions.length);
+    const nextList = shuffledQuestions.slice(1);
     if (nextList.length === 0) {
       revalidateByTag("questions");
     }
@@ -59,7 +59,7 @@ const Trivia = ({ questions }: { questions: Question[] }) => {
   return (
     <div className="flex flex-col items-center">
       <div>{currentCard}</div>
-      <Button className="mt-8" onClick={handleClick}>
+      <Button className="text-xs mt-6" onClick={handleClick}>
         Next question
       </Button>
     </div>

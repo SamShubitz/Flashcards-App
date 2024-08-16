@@ -4,6 +4,11 @@ import FlashcardForm, { Card } from "@/app/flashcards/components/FlashcardForm";
 import FlashCard from "./Flashcard";
 import SaveDialog from "./SaveDialog";
 import { Button } from "@/components/ui/button";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { saveDeck, updateDeck } from "@/app/flashcards/actions";
 import { revalidateByPath } from "@/lib/revalidate";
 
@@ -83,7 +88,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
 
   const newDeckDisplay = (
     <>
-      <div className="flex gap-4 self-end mb-6">
+      <div className="flex w-full justify-end gap-4 self-end mb-6 pb-4 border-b-[1px] border-b-slate-300">
         <SaveDialog setDeck={setDeck} onSave={handleSave} deck={deck} />
         <Button className="text-xs p-2" onClick={handleRemoveCard}>
           Remove card
@@ -99,12 +104,19 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
 
   const deckDisplay = (
     <>
-      <FlashcardForm
-        nextCard={nextCard}
-        handleFormChange={handleFormChange}
-        handleSubmit={handleSubmit}
-      />
-      <h1 className="text-4xl text-slate-500 mb-4">{deck.name}</h1>
+      <Popover>
+        <PopoverTrigger className="ml-auto text-xs font-medium border-[1px] p-3 rounded-md bg-gray-50 hover:bg-slate-100">
+          Add another card
+        </PopoverTrigger>
+        <PopoverContent className="w-full gap-4">
+          <FlashcardForm
+            nextCard={nextCard}
+            handleFormChange={handleFormChange}
+            handleSubmit={handleSubmit}
+          />
+        </PopoverContent>
+      </Popover>
+      <h1 className="text-4xl font-sans text-slate-600 my-6">{deck.name}</h1>
     </>
   );
 

@@ -23,7 +23,7 @@ const TriviaDisplay = ({
 
   const handleClick = (e: any, correctAnswer: string) => {
     const answer = e.target.innerText;
-    if (answer === correctAnswer) {
+    if (answer.trim() === correctAnswer.trim()) {
       setStatus("correct");
       const nextScore = score + 1;
       setScore(nextScore);
