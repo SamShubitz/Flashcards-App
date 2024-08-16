@@ -87,7 +87,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
   };
 
   const newDeckDisplay = (
-    <>
+    <div className="flex flex-col h-[9rem]">
       <div className="flex w-full justify-end gap-4 self-end mb-6 pb-4 border-b-[1px] border-b-slate-300">
         <SaveDialog setDeck={setDeck} onSave={handleSave} deck={deck} />
         <Button className="text-xs p-2" onClick={handleRemoveCard}>
@@ -99,15 +99,17 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
         handleFormChange={handleFormChange}
         handleSubmit={handleSubmit}
       />
-    </>
+    </div>
   );
 
   const deckDisplay = (
-    <>
+    <div className="h-[9rem] flex flex-col w-full">
       <Popover>
-        <PopoverTrigger className="ml-auto text-xs font-medium border-[1px] p-3 rounded-md bg-gray-50 hover:bg-slate-100">
-          Add another card
-        </PopoverTrigger>
+        <span className="border-b-[1px] border-slate-300 pb-4 flex justify-end">
+          <PopoverTrigger className="self-end text-xs font-medium border-[1px] p-3 rounded-md bg-gray-50 hover:bg-slate-100">
+            Add another card
+          </PopoverTrigger>
+        </span>
         <PopoverContent className="w-full gap-4">
           <FlashcardForm
             nextCard={nextCard}
@@ -116,8 +118,10 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
           />
         </PopoverContent>
       </Popover>
-      <h1 className="text-4xl font-sans text-slate-600 my-6">{deck.name}</h1>
-    </>
+      <h1 className="self-center text-4xl font-sans text-slate-600 mt-4">
+        {deck.name}
+      </h1>
+    </div>
   );
 
   return (

@@ -1,7 +1,9 @@
 "use server";
 import db from "@/lib/db";
 import { getUser } from "@/lib/get-user";
+import { Flashcard } from "@prisma/client";
 import { redirect } from "next/navigation";
+import { Card } from "./components/FlashcardForm";
 
 type DeckData = {
   id?: string;
@@ -50,6 +52,12 @@ export async function updateDeck(deck: DeckData) {
   });
   return updatedDeck;
 }
+
+// export async function updateCard(deck: DeckData, ) {
+//   await db.deck.update({
+//     where: { cards: card.id }
+//   })
+// }
 
 export async function deleteDeck(id: string) {
   await db.deck.delete({

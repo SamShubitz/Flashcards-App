@@ -13,7 +13,10 @@ const CustomForm = ({
   handleSubmit: (e: any) => void;
 }) => {
   return (
-    <form onSubmit={handleSubmit} className="flex justify-between w-full mb-2">
+    <form
+      onSubmit={handleSubmit}
+      className="flex justify-between gap-3 w-full mb-2"
+    >
       <label htmlFor="question-input">
         <Input
           id="question-input"
