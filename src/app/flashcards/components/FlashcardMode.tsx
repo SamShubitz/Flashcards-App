@@ -142,7 +142,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
     <div className="flex flex-col items-center gap-3">
       {savedDeck ? deckDisplay : newDeckDisplay}
       <FlashCard content={currentCard} />
-      <div className="font-light border p-2 min-w-[4rem] text-center text-sm font-mono rounded-lg">
+      <div className="bg-white font-light border p-2 mt-2 min-w-[4rem] text-center text-sm font-mono rounded-lg">
         {deck.cards[0].front
           ? `${displayIndex + 1} / ${deck.cards.length}`
           : "0 / 0"}

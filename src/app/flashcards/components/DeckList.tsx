@@ -26,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { revalidateByPath } from "@/lib/revalidate";
 
 const DeckList = ({ decks }: { decks: Deck[] }) => {
   const [selectedDeck, setSelectedDeck] = useState("");
@@ -46,7 +47,7 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
   };
 
   return (
-    <div className="flex-1 h-[715px] max-w-[16rem] flex flex-col rounded-lg border-gray-200 p-4">
+    <div className="flex-1 h-[600px] max-w-[16rem] flex flex-col rounded-lg border-gray-200 p-4">
       <div className="h-full pt-12 p-3">
         <div className="border-b-[1px] border-b-slate-300 pb-4 mb-4">
           <p className="text-gray-800 text-sm font-semibold mb-4">MY DECKS</p>
@@ -62,7 +63,14 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
           </Select>
         </div>
         <div className="text-gray-800 font-semibold my-2">
-          <Link className="text-sm" href="/flashcards">
+          <Link
+            className="text-sm"
+            href="/flashcards"
+            onClick={() => {
+              localStorage.removeItem("flashcards");
+              revalidateByPath("/flashcards");
+            }}
+          >
             <Button className="text-xs w-[6rem]">New deck</Button>
           </Link>
         </div>

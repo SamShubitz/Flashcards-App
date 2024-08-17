@@ -15,11 +15,13 @@ const FlashCard = ({ content }: { content: Card }) => {
 
   return (
     <div
-      className="border-[1px] border-slate-300 w-[30rem]
-        h-[16rem] p-4 rounded-md cursor-pointer flex items-center justify-center"
+      className="border border-slate-300 w-[30rem] h-[16rem] p-6 rounded-lg cursor-pointer flex items-center justify-center
+               shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white"
       onClick={toggleDisplay}
     >
-      <p>{frontDisplay ? content.front : content.back}</p>
+      <p className="text-center text-lg">
+        {frontDisplay ? content.front : content.back}
+      </p>
     </div>
   );
 };
