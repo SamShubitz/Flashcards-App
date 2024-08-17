@@ -37,7 +37,7 @@ const TriviaDisplay = ({
   return (
     <div>
       <h1 className="text-lg font-semibold mb-4">{`Score: ${score}`}</h1>
-      <div className="border-2 rounded-md bg-[#f1f1f3] text-base p-6 h-fit min-h-[24rem] w-[30rem] flex flex-col items-center justify-center">
+      <div className="border-2 rounded-md bg-[#f1f1f3] text-base p-6 h-fit min-h-[24rem] w-[20rem] sm:w-[30rem] flex flex-col items-center justify-center">
         {display === "front" ? (
           <>
             <div className="flex-1 flex border-[1px] bg-white text-black rounded-t-md mb-4 w-full items-center justify-center">
@@ -48,7 +48,7 @@ const TriviaDisplay = ({
             <div className="flex-1 h-fit grid grid-cols-2 grid-rows-2 gap-4">
               {question.shuffledAnswers?.map((a, i) => (
                 <button
-                  className="text-xs bg-white hover:bg-[#e4e6e6] text-black font-semibold py-4 min-h-14 w-48 px-1 rounded-md mx-auto"
+                  className="text-xs bg-white hover:bg-[#e4e6e6] text-black font-semibold py-4 min-h-14 w-32 sm:w-48 px-1 rounded-md mx-auto"
                   key={i}
                   onClick={(e) => handleClick(e, question.correctAnswer)}
                 >

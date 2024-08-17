@@ -47,7 +47,7 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
   };
 
   return (
-    <div className="flex-1 h-[600px] max-w-[16rem] flex flex-col rounded-lg border-gray-200 p-4">
+    <div className="flex-1 sm:h-[700px] sm:max-w-[16rem] rounded-lg mb-6 ml-4 p-4">
       <div className="h-full pt-12 p-3">
         <div className="border-b-[1px] border-b-slate-300 pb-4 mb-4">
           <p className="text-gray-800 text-sm font-semibold mb-4">MY DECKS</p>

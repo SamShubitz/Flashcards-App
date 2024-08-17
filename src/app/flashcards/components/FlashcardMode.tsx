@@ -139,7 +139,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
   );
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-3 m-4">
       {savedDeck ? deckDisplay : newDeckDisplay}
       <FlashCard content={currentCard} />
       <div className="bg-white font-light border p-2 mt-2 min-w-[4rem] text-center text-sm font-mono rounded-lg">
