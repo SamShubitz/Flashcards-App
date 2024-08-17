@@ -27,11 +27,17 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
   const [displayIndex, setDisplayIndex] = useState(0);
   const [nextCard, setNextCard] = useState({ front: "", back: "" });
   const currentCard = deck.cards[displayIndex];
+  const deckIsEmpty = deck.cards[0].front === "";
 
   useEffect(() => {
     if (savedDeck) {
       const currentDeck = { name: savedDeck.name, cards: savedDeck.cards };
       setDeck(currentDeck);
+    } else {
+      const savedDeck = localStorage.getItem("flashcards");
+      if (savedDeck) {
+        setDeck(JSON.parse(savedDeck));
+      }
     }
   }, [savedDeck]);
 
@@ -64,12 +70,19 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    if (deck.cards[0].front === "") {
+    if (deckIsEmpty) {
       setDeck({ ...deck, cards: [nextCard] });
     } else {
       setDeck({ ...deck, cards: [...deck.cards, nextCard] });
       setDisplayIndex(deck.cards.length);
     }
+    localStorage.setItem(
+      "flashcards",
+      JSON.stringify({
+        ...deck,
+        cards: deckIsEmpty ? [nextCard] : [...deck.cards, nextCard],
+      })
+    );
     setNextCard({ front: "", back: "" });
 
     if (savedDeck) {
@@ -80,9 +93,10 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
   };
 
   const handleSave = async () => {
-    if (deck.cards[0].front !== "") {
+    if (!deckIsEmpty) {
       const deckData = { cards: deck.cards, name: deck.name };
       await saveDeck(deckData);
+      localStorage.removeItem("flashcards");
     }
   };
 
@@ -95,6 +109,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
         </Button>
       </div>
       <FlashcardForm
+        className="flex justify-between gap-3 w-full mb-2"
         nextCard={nextCard}
         handleFormChange={handleFormChange}
         handleSubmit={handleSubmit}
@@ -103,22 +118,21 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
   );
 
   const deckDisplay = (
-    <div className="h-[9rem] flex flex-col w-full">
+    <div className="h-[9rem] flex flex-col justify-between w-full">
       <Popover>
-        <span className="border-b-[1px] border-slate-300 pb-4 flex justify-end">
-          <PopoverTrigger className="self-end text-xs font-medium border-[1px] p-3 rounded-md bg-gray-50 hover:bg-slate-100">
-            Add another card
-          </PopoverTrigger>
-        </span>
+        <PopoverTrigger className="self-end text-xs font-medium border-[1px] p-3 rounded-md bg-gray-50 hover:bg-slate-100">
+          Add a card
+        </PopoverTrigger>
         <PopoverContent className="w-full gap-4">
           <FlashcardForm
+            className="flex flex-col items-center gap-3 p-5 w-full mb-2"
             nextCard={nextCard}
             handleFormChange={handleFormChange}
             handleSubmit={handleSubmit}
           />
         </PopoverContent>
       </Popover>
-      <h1 className="self-center text-4xl font-sans text-slate-600 mt-4">
+      <h1 className="self-center text-4xl font-sans text-slate-600 mb-5">
         {deck.name}
       </h1>
     </div>

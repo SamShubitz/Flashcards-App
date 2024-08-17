@@ -66,7 +66,6 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
             <Button className="text-xs w-[6rem]">New deck</Button>
           </Link>
         </div>
-
         <AlertDialog>
           <AlertDialogTrigger
             disabled={!id}

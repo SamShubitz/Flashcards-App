@@ -12,7 +12,7 @@ import { Deck } from "./FlashcardMode";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const SaveDialogue = ({
+const SaveDialog = ({
   onSave,
   setDeck,
   deck,
@@ -38,10 +38,6 @@ const SaveDialogue = ({
       setMessage({ text: "Please enter a name", error: true });
       return;
     }
-    if (deck.cards[0].front === "") {
-      setMessage({ text: "Deck is currently empty", error: true });
-      return;
-    }
     if (deck.name.length >= 21) {
       setMessage({
         text: "Deck name must be 20 characters or less",
@@ -54,21 +50,24 @@ const SaveDialogue = ({
 
   return (
     <Dialog>
-      <DialogTrigger className="text-xs rounded-md px-3 border font-medium border-input bg-background hover:bg-accent hover:text-accent-foreground">
+      <DialogTrigger
+        disabled={deck.cards[0].front === ""}
+        className="text-xs rounded-md px-3 border font-medium border-input bg-background hover:bg-accent hover:text-accent-foreground disabled:opacity-50 disabled:hover:bg-white"
+      >
         Save deck
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="mb-4">Name your deck:</DialogTitle>
-          <DialogDescription>
-            <Input
-              placeholder="New deck"
-              value={deck.name}
-              onChange={handleChange}
-            />
-            <p className={`text-xs text-destructive mt-4 ${errorStatus}`}>
-              {message.text}
-            </p>
+          <DialogTitle className="mb-2">Name your deck:</DialogTitle>
+          <Input
+            placeholder="New deck"
+            value={deck.name}
+            onChange={handleChange}
+          />
+          <DialogDescription
+            className={`text-xs text-destructive ${errorStatus}`}
+          >
+            {message.text}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
@@ -79,4 +78,4 @@ const SaveDialogue = ({
   );
 };
 
-export default SaveDialogue;
+export default SaveDialog;

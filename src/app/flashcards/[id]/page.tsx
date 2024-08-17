@@ -1,6 +1,7 @@
 import FlashcardMode from "@/app/flashcards/components/FlashcardMode";
 import db from "@/lib/db";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { updateCard } from "../actions";
 
 export const getDeckById = async (id: string) => {
   const deck = await db.deck.findUnique({

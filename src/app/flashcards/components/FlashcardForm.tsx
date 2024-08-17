@@ -4,19 +4,18 @@ import { Input } from "@/components/ui/input";
 export type Card = { id?: string; front: string; back: string };
 
 const CustomForm = ({
+  className,
   nextCard,
   handleFormChange,
   handleSubmit,
 }: {
+  className: string;
   nextCard: Card;
   handleFormChange: (e: any) => void;
   handleSubmit: (e: any) => void;
 }) => {
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex justify-between gap-3 w-full mb-2"
-    >
+    <form onSubmit={handleSubmit} className={className}>
       <label htmlFor="question-input">
         <Input
           id="question-input"
