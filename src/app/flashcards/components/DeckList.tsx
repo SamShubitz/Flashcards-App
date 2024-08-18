@@ -8,6 +8,12 @@ import { Button } from "@/components/ui/button";
 import { deleteDeck } from "../actions";
 
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -47,10 +53,10 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
   };
 
   return (
-    <div className="flex-1 sm:h-[700px] sm:max-w-[16rem] rounded-lg mb-6 ml-4 p-4">
-      <div className="h-full pt-12 p-3">
+    <div className="bg-zinc-100 md:flex-1 self-start md:self-center md:h-[650px] md:max-w-[15rem] rounded-lg mb-6 md:ml-4 p-4 flex items-start justify-center w-full">
+      <div className="h-full pt-12 p-3 md:block flex flex-wrap items-center gap-2">
         <div className="border-b-[1px] border-b-slate-300 pb-4 mb-4">
-          <p className="text-gray-800 text-sm font-semibold mb-4">MY DECKS</p>
+          <p className="text-slate-800 text-sm font-semibold mb-4">MY DECKS</p>
           <Select
             value={selectedDeck}
             onValueChange={handleDeckSelect}

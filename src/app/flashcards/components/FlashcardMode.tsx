@@ -132,6 +132,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
           />
         </PopoverContent>
       </Popover>
+      <div className="border-b-[1px] border-slate-300" />
       <h1 className="self-center text-4xl font-sans text-slate-600 mb-5">
         {deck.name}
       </h1>

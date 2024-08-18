@@ -22,7 +22,7 @@ const DeckDisplay = async ({ params }: { params: Params }) => {
   const deck = await getDeckById(id);
 
   return (
-    <div className="flex flex-col gap-5 bg-gray-100 items-center justify-between rounded-lg">
+    <div className="bg-zinc-100 p-2 p-4 items-center justify-between rounded-lg">
       <FlashcardMode savedDeck={deck} />
     </div>
   );
