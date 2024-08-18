@@ -11,6 +11,12 @@ import {
 } from "@/components/ui/popover";
 import { saveDeck, updateDeck } from "@/app/flashcards/actions";
 import { revalidateByPath } from "@/lib/revalidate";
+import { shuffleArray } from "@/lib/shuffle-cards";
+import { Collapsible } from "@radix-ui/react-collapsible";
+import {
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 export type Deck = {
   name: string;
@@ -100,6 +106,11 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
     }
   };
 
+  const shuffleDeck = () => {
+    const shuffledCards = shuffleArray(deck.cards);
+    setDeck({ ...deck, cards: shuffledCards });
+  };
+
   const newDeckDisplay = (
     <div className="flex flex-col h-[9rem]">
       <div className="flex w-full justify-end gap-4 self-end mb-6 pb-4 border-b-[1px] border-b-slate-300">
@@ -119,21 +130,30 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
 
   const deckDisplay = (
     <div className="h-[9rem] flex flex-col justify-between w-full">
-      <Popover>
-        <PopoverTrigger className="self-end text-xs font-medium border-[1px] p-3 rounded-md bg-gray-50 hover:bg-slate-100">
-          Add a card
-        </PopoverTrigger>
-        <PopoverContent className="w-full gap-4">
-          <FlashcardForm
-            className="flex flex-col items-center gap-3 p-5 w-full mb-2"
-            nextCard={nextCard}
-            handleFormChange={handleFormChange}
-            handleSubmit={handleSubmit}
-          />
-        </PopoverContent>
-      </Popover>
+      <div className="flex justify-end gap-3">
+        <Button
+          className="text-xs self-center"
+          onClick={shuffleDeck}
+          disabled={deckIsEmpty}
+        >
+          Shuffle deck
+        </Button>
+        <Popover>
+          <PopoverTrigger className="text-xs font-medium border-[1px] p-3 rounded-md bg-white hover:bg-slate-100">
+            Add card
+          </PopoverTrigger>
+          <PopoverContent className="w-full gap-4">
+            <FlashcardForm
+              className="flex flex-col items-center gap-3 p-5 w-full mb-2"
+              nextCard={nextCard}
+              handleFormChange={handleFormChange}
+              handleSubmit={handleSubmit}
+            />
+          </PopoverContent>
+        </Popover>
+      </div>
       <div className="border-b-[1px] border-slate-300" />
-      <h1 className="self-center text-4xl font-sans text-slate-600 mb-5">
+      <h1 className="self-center text-4xl font-sans text-slate-600 mt-3 mb-5">
         {deck.name}
       </h1>
     </div>

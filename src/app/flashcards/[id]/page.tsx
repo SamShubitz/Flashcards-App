@@ -1,7 +1,6 @@
 import FlashcardMode from "@/app/flashcards/components/FlashcardMode";
 import db from "@/lib/db";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { updateCard } from "../actions";
 
 export const getDeckById = async (id: string) => {
   const deck = await db.deck.findUnique({
@@ -22,7 +21,7 @@ const DeckDisplay = async ({ params }: { params: Params }) => {
   const deck = await getDeckById(id);
 
   return (
-    <div className="bg-zinc-100 p-2 p-4 items-center justify-between rounded-lg">
+    <div className="bg-zinc-100 p-4 items-center justify-between rounded-lg">
       <FlashcardMode savedDeck={deck} />
     </div>
   );

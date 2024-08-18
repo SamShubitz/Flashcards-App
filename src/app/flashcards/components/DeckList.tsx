@@ -53,6 +53,9 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
   };
 
   return (
+    // <Collapsible>
+    //   <CollapsibleTrigger className="h-[12rem]">DECKS</CollapsibleTrigger>
+    //   <CollapsibleContent>
     <div className="bg-zinc-100 md:flex-1 self-start md:self-center md:h-[650px] md:max-w-[15rem] rounded-lg mb-6 md:ml-4 p-4 flex items-start justify-center w-full">
       <div className="h-full pt-12 p-3 md:block flex flex-wrap items-center gap-2">
         <div className="border-b-[1px] border-b-slate-300 pb-4 mb-4">
@@ -109,6 +112,8 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
         </AlertDialog>
       </div>
     </div>
+    //   </CollapsibleContent>
+    // </Collapsible>
   );
 };
 
