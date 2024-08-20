@@ -14,7 +14,7 @@ export async function saveDeck(deckData: DeckData) {
   const response = await getUser();
   const user = response?.user;
 
-  if (!user) return null;
+  if (!user) return { error: "Log in to save a deck" };
 
   const deck = await db.deck.create({
     data: {

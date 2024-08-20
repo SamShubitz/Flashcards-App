@@ -12,11 +12,6 @@ import {
 import { saveDeck, updateDeck } from "@/app/flashcards/actions";
 import { revalidateByPath } from "@/lib/revalidate";
 import { shuffleArray } from "@/lib/shuffle-cards";
-import { Collapsible } from "@radix-ui/react-collapsible";
-import {
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
 
 export type Deck = {
   name: string;
@@ -101,8 +96,12 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
   const handleSave = async () => {
     if (!deckIsEmpty) {
       const deckData = { cards: deck.cards, name: deck.name };
-      await saveDeck(deckData);
-      localStorage.removeItem("flashcards");
+      const response = await saveDeck(deckData);
+      if (response.error) {
+        return response.error;
+      } else {
+        localStorage.removeItem("flashcards");
+      }
     }
   };
 
@@ -160,7 +159,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
   );
 
   return (
-    <div className="flex flex-col items-center gap-3 m-4">
+    <div className="rounded-md lg:p-10 pb-10 flex flex-col items-center gap-3">
       {savedDeck ? deckDisplay : newDeckDisplay}
       <FlashCard content={currentCard} />
       <div className="bg-white font-light border p-2 mt-2 min-w-[4rem] text-center text-sm font-mono rounded-lg">

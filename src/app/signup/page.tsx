@@ -40,6 +40,17 @@ export default function Page() {
             aria-label="Password"
           />
 
+          <label htmlFor="confirm-password" className="text-sm font-medium">
+            Confirm password
+          </label>
+          <input
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500"
+            aria-label="Password"
+          />
+
           <button
             type="submit"
             className="mt-4 bg-gray-800 text-white text-sm py-2 rounded-md hover:bg-gray-700 transition-colors"

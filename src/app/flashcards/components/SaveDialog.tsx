@@ -17,7 +17,7 @@ const SaveDialog = ({
   setDeck,
   deck,
 }: {
-  onSave: () => void;
+  onSave: () => Promise<string | undefined>;
   setDeck: (e: any) => void;
   deck: Deck;
 }) => {
@@ -45,7 +45,10 @@ const SaveDialog = ({
       });
       return;
     }
-    onSave();
+    const error = await onSave();
+    if (error) {
+      setMessage({ text: error, error: true });
+    }
   };
 
   return (

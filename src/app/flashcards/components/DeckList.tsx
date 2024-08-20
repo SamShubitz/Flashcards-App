@@ -6,13 +6,6 @@ import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { deleteDeck } from "../actions";
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -24,7 +17,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
 import {
   Select,
   SelectContent,
@@ -32,6 +24,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
 import { revalidateByPath } from "@/lib/revalidate";
 
 const DeckList = ({ decks }: { decks: Deck[] }) => {
@@ -53,12 +52,9 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
   };
 
   return (
-    // <Collapsible>
-    //   <CollapsibleTrigger className="h-[12rem]">DECKS</CollapsibleTrigger>
-    //   <CollapsibleContent>
-    <div className="bg-zinc-100 md:flex-1 self-start md:self-center md:h-[650px] md:max-w-[15rem] rounded-lg mb-6 md:ml-4 p-4 flex items-start justify-center w-full">
-      <div className="h-full pt-12 p-3 md:block flex flex-wrap items-center gap-2">
-        <div className="border-b-[1px] border-b-slate-300 pb-4 mb-4">
+    <div className="shadow-md lg:shadow-none lg:flex-1 lg:h-[670px] lg:max-w-[15rem] rounded-lg lg:ml-4 flex w-full">
+      <div className="p-6 pb-3 lg:block flex flex-wrap items-center gap-2">
+        <div className="lg:border-b-[1px] border-b-slate-300 pb-4 mb-4">
           <p className="text-slate-800 text-sm font-semibold mb-4">MY DECKS</p>
           <Select
             value={selectedDeck}
@@ -112,8 +108,6 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
         </AlertDialog>
       </div>
     </div>
-    //   </CollapsibleContent>
-    // </Collapsible>
   );
 };
 
