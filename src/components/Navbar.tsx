@@ -16,7 +16,7 @@ const Header = async () => {
   }
 
   return (
-    <nav className="bg-gray-800 h-11 flex text-sm justify-end items-center">
+    <nav className="border-b-[1px] bg-slate-950 h-11 flex text-sm justify-end items-center">
       <ul className="flex gap-4 mr-4 max-w-[1200px] self-center">
         {links.map((link) => {
           return (
@@ -38,7 +38,7 @@ const Header = async () => {
             Log in
           </Link>
           <Link href="/signup">
-            <button className="border font-semibold px-2 py-1 rounded-xl mr-4 ml-4 text-xs text-white">
+            <button className="bg-gray-900 border font-semibold px-2 py-1 rounded-xl mr-4 ml-4 text-xs text-white">
               Sign up
             </button>
           </Link>

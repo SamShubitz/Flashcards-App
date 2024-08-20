@@ -2,7 +2,7 @@ import FlashcardMode from "@/app/flashcards/components/FlashcardMode";
 
 const Flashcards = async () => {
   return (
-    <div className="bg-zinc-100 flex items-center justify-between p-4 rounded-lg">
+    <div className="w-5/6 max-w-[40rem] border-gray-200 border-[1px] flex items-center justify-between rounded-lg">
       <FlashcardMode />
     </div>
   );

@@ -56,7 +56,10 @@ const Trivia = ({ questions }: { questions: Question[] }) => {
   return (
     <div className="flex flex-col items-center">
       <div>{currentCard}</div>
-      <Button className="text-xs mt-6" onClick={handleClick}>
+      <Button
+        className=" bg-slate-900 text-white text-xs mt-6"
+        onClick={handleClick}
+      >
         Next question
       </Button>
     </div>

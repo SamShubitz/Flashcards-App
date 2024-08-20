@@ -24,12 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 import { revalidateByPath } from "@/lib/revalidate";
 
@@ -52,10 +46,10 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
   };
 
   return (
-    <div className="shadow-md lg:shadow-none lg:flex-1 lg:h-[670px] lg:max-w-[15rem] rounded-lg lg:ml-4 flex w-full">
+    <div className="shadow-md border-[1px] border-gray-200 bg-slate-900 lg:shadow-none lg:flex-1 lg:h-[500px] lg:max-w-[15rem] rounded-md lg:ml-4 flex w-5/6">
       <div className="p-6 pb-3 lg:block flex flex-wrap items-center gap-2">
         <div className="lg:border-b-[1px] border-b-slate-300 pb-4 mb-4">
-          <p className="text-slate-800 text-sm font-semibold mb-4">MY DECKS</p>
+          <p className="text-white text-sm font-semibold mb-4">MY DECKS</p>
           <Select
             value={selectedDeck}
             onValueChange={handleDeckSelect}
@@ -67,7 +61,7 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
             <SelectContent>{deckList}</SelectContent>
           </Select>
         </div>
-        <div className="text-gray-800 font-semibold my-2">
+        <div className="text-white font-semibold my-2">
           <Link
             className="text-sm"
             href="/flashcards"
@@ -76,13 +70,15 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
               revalidateByPath("/flashcards");
             }}
           >
-            <Button className="text-xs w-[6rem]">New deck</Button>
+            <Button className="bg-slate-900 text-white hover:bg-slate-800 hover:text-white text-xs w-[6rem]">
+              New deck
+            </Button>
           </Link>
         </div>
         <AlertDialog>
           <AlertDialogTrigger
             disabled={!id}
-            className="border-[1px] text-xs font-medium w-[6rem] py-3 rounded-md bg-white hover:bg-slate-100 disabled:opacity-50 disabled:hover:bg-white"
+            className="border-[1px] text-xs font-medium w-[6rem] py-3 rounded-md bg-slate-900 text-white hover:bg-slate-800 disabled:opacity-50 disabled:bg-slate-800"
           >
             Delete deck
           </AlertDialogTrigger>

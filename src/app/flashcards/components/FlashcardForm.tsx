@@ -42,7 +42,10 @@ const CustomForm = ({
           required
         />
       </label>
-      <Button type="submit" className="px-2 py-2 text-xs ml-2">
+      <Button
+        type="submit"
+        className="bg-slate-900 text-white hover:bg-slate-900 hover:text-white hover:opacity-50 px-2 py-2 text-xs ml-2"
+      >
         Add card
       </Button>
     </form>

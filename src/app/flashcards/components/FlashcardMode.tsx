@@ -97,7 +97,7 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
     if (!deckIsEmpty) {
       const deckData = { cards: deck.cards, name: deck.name };
       const response = await saveDeck(deckData);
-      if (response.error) {
+      if (response?.error) {
         return response.error;
       } else {
         localStorage.removeItem("flashcards");
@@ -114,7 +114,10 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
     <div className="flex flex-col h-[9rem]">
       <div className="flex w-full justify-end gap-4 self-end mb-6 pb-4 border-b-[1px] border-b-slate-300">
         <SaveDialog setDeck={setDeck} onSave={handleSave} deck={deck} />
-        <Button className="text-xs p-2" onClick={handleRemoveCard}>
+        <Button
+          className="bg-slate-900 text-white hover:bg-slate-900 hover:opacity-50 hover:text-white text-xs p-2"
+          onClick={handleRemoveCard}
+        >
           Remove card
         </Button>
       </div>
@@ -131,14 +134,14 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
     <div className="h-[9rem] flex flex-col justify-between w-full">
       <div className="flex justify-end gap-3">
         <Button
-          className="text-xs self-center"
+          className="bg-slate-900 text-white hover:bg-slate-800 hover:text-white text-xs self-center"
           onClick={shuffleDeck}
           disabled={deckIsEmpty}
         >
           Shuffle deck
         </Button>
         <Popover>
-          <PopoverTrigger className="text-xs font-medium border-[1px] p-3 rounded-md bg-white hover:bg-slate-100">
+          <PopoverTrigger className="text-xs font-medium border-[1px] p-3 rounded-md bg-slate-900 text-white hover:text-white hover:bg-slate-800">
             Add card
           </PopoverTrigger>
           <PopoverContent className="w-full gap-4">
@@ -152,14 +155,14 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
         </Popover>
       </div>
       <div className="border-b-[1px] border-slate-300" />
-      <h1 className="self-center text-4xl font-sans text-slate-600 mt-3 mb-5">
+      <h1 className="self-center text-4xl font-sans text-white mt-3 mb-5">
         {deck.name}
       </h1>
     </div>
   );
 
   return (
-    <div className="rounded-md lg:p-10 pb-10 flex flex-col items-center gap-3">
+    <div className="bg-slate-900 sm:px-10 py-10 w-full rounded-md lg:p-10 pb-10 flex flex-col items-center gap-3">
       {savedDeck ? deckDisplay : newDeckDisplay}
       <FlashCard content={currentCard} />
       <div className="bg-white font-light border p-2 mt-2 min-w-[4rem] text-center text-sm font-mono rounded-lg">
@@ -169,11 +172,11 @@ const FlashcardMode = ({ savedDeck }: { savedDeck?: Deck }) => {
       </div>
       <div className="flex gap-2 mt-2">
         <Button
-          className="text-xs"
+          className="bg-slate-900 text-white text-xs"
           onClick={() => handleCardChange("d")}
         >{`<`}</Button>
         <Button
-          className=""
+          className="bg-slate-900 text-white text-xs"
           onClick={() => handleCardChange("i")}
         >{`>`}</Button>
       </div>

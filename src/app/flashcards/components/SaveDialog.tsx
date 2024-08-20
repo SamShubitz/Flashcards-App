@@ -55,7 +55,7 @@ const SaveDialog = ({
     <Dialog>
       <DialogTrigger
         disabled={deck.cards[0].front === ""}
-        className="text-xs rounded-md px-3 border font-medium border-input bg-background hover:bg-accent hover:text-accent-foreground disabled:opacity-50 disabled:hover:bg-white"
+        className="bg-slate-900 text-white text-xs rounded-md px-3 border font-medium border-input bg-background hover:bg-accent hover:bg-slate-800 disabled:opacity-50 disabled:bg-slate-800"
       >
         Save deck
       </DialogTrigger>
@@ -74,7 +74,9 @@ const SaveDialog = ({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button onClick={handleOnSave}>Save</Button>
+          <Button className="bg-slate-900 text-white" onClick={handleOnSave}>
+            Save
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

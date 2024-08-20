@@ -21,7 +21,7 @@ const DeckDisplay = async ({ params }: { params: Params }) => {
   const deck = await getDeckById(id);
 
   return (
-    <div className="bg-zinc-100 p-4 items-center justify-between rounded-lg">
+    <div className="w-5/6 max-w-[40rem] border-gray-200 border-[1px] items-center justify-between rounded-lg">
       <FlashcardMode savedDeck={deck} />
     </div>
   );
