@@ -4,7 +4,7 @@ import { getUser } from "@/lib/get-user";
 import { redirect } from "next/navigation";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-export const getDeckById = async (id: string) => {
+const getDeckById = async (id: string) => {
   const response = await getUser();
   const user = response?.user;
 
