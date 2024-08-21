@@ -15,8 +15,8 @@ export default function Page() {
   };
 
   return (
-    <div className="w-screen min-h-full flex justify-center items-center bg-gray-100">
-      <div className="bg-white h-[30rem] w-[25rem] rounded-xl shadow-lg flex flex-col items-center justify-evenly p-6">
+    <div className="bg-slate-900 py-9 border-y-[1px] w-screen min-h-full flex justify-center items-center">
+      <div className="bg-slate-100 h-[30rem] w-[25rem] rounded-xl shadow-lg flex flex-col items-center justify-evenly p-6">
         <h1 className="text-2xl font-semibold">Sign up</h1>
         <form className="flex flex-col gap-3 w-full" action={handleSignup}>
           <label htmlFor="username" className="text-sm font-medium">

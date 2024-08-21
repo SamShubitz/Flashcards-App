@@ -48,7 +48,7 @@ const DeckList = ({ decks }: { decks: Deck[] }) => {
   return (
     <div className="shadow-md border-[1px] border-gray-200 bg-slate-900 lg:shadow-none lg:flex-1 lg:h-[500px] lg:max-w-[15rem] rounded-md lg:ml-4 flex w-5/6">
       <div className="p-6 pb-3 lg:block flex flex-wrap items-center gap-2">
-        <div className="lg:border-b-[1px] border-b-slate-300 pb-4 mb-4">
+        <div className="lg:border-b-[1px] border-b-slate-300 pb-4 mb-5">
           <p className="text-white text-sm font-semibold mb-4">MY DECKS</p>
           <Select
             value={selectedDeck}

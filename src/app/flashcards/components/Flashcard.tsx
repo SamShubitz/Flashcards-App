@@ -15,8 +15,8 @@ const FlashCard = ({ content }: { content: Card }) => {
 
   return (
     <div
-      className="border border-slate-300 w-[20rem] sm:w-[30rem] h-[12rem] sm:h-[16rem] sm:p-6 rounded-lg cursor-pointer flex items-center justify-center 
-               shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out bg-white overflow-auto"
+      className="w-[17rem] sm:w-[30rem] h-[12rem] sm:h-[16rem] sm:p-6 rounded-lg cursor-pointer flex items-center justify-center 
+               shadow-md hover:shadow-xl transition-shadow duration-300 ease-in-out bg-slate-100 overflow-auto"
       onClick={toggleDisplay}
     >
       <p className="sm:text-center mb-2 max-h-full text-sm sm:text-lg">

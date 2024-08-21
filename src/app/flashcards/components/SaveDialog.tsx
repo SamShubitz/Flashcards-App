@@ -74,7 +74,10 @@ const SaveDialog = ({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button className="bg-slate-900 text-white" onClick={handleOnSave}>
+          <Button
+            className="bg-slate-900 text-white hover:bg-slate-800 hover:text-white"
+            onClick={handleOnSave}
+          >
             Save
           </Button>
         </DialogFooter>

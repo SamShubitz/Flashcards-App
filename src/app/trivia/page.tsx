@@ -5,7 +5,7 @@ const TriviaPage = async () => {
   const questions = await getQuestions();
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="bg-slate-900 py-16 flex items-center justify-center">
       <TriviaGame questions={questions} />
     </div>
   );

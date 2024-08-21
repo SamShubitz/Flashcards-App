@@ -1,8 +1,13 @@
 import FlashcardMode from "@/app/flashcards/components/FlashcardMode";
 import db from "@/lib/db";
+import { getUser } from "@/lib/get-user";
+import { redirect } from "next/navigation";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 export const getDeckById = async (id: string) => {
+  const response = await getUser();
+  const user = response?.user;
+
   const deck = await db.deck.findUnique({
     where: { id: id },
     include: {
@@ -11,7 +16,9 @@ export const getDeckById = async (id: string) => {
   });
 
   if (!deck) {
-    throw new Error("Deck not found");
+    redirect("/flashcards");
+  } else if (deck.userId !== user?.id) {
+    redirect("/login");
   }
   return deck;
 };

@@ -4,8 +4,7 @@ export default async function Home() {
   const user = await getUser();
 
   return (
-    <main className="border-y-[1px] bg-slate-900 flex justify-center items-center p-24 gap-9">
-      <div className="" />
+    <main className="bg-slate-900 flex justify-center items-center p-24 gap-9">
       <div className="flex-1 max-w-96 text-left text-white">
         <h1 className="text-4xl">Welcome</h1>
         <br />
