@@ -6,7 +6,8 @@ import { lucia } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 export async function login(formData: FormData) {
-  const username = formData.get("username");
+  const usernameInput = formData.get("username");
+ const username = usernameInput?.toString().toLowerCase();
   if (
     typeof username !== "string" ||
     username.length < 3 ||
